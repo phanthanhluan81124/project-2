@@ -2,7 +2,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{{ route('admin.home') }}" class="logo d-flex align-items-center">
-            <img src="{{ asset('Admin/assets/img/logo.png') }}" alt="">
+            <img src="{{ asset('theme/Admin/assets/img/logo.png') }}" alt="">
             <span class="d-none d-lg-block">ZenBlog</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -118,7 +118,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="{{ asset('Admin/assets/img/messages-1.jpg') }}" alt=""
+                            <img src="{{ asset('theme/Admin/assets/img/messages-1.jpg') }}" alt=""
                                 class="rounded-circle">
                             <div>
                                 <h4>Maria Hudson</h4>
@@ -133,7 +133,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="{{ asset('Admin/assets/img/messages-2.jpg') }}" alt=""
+                            <img src="{{ asset('theme/Admin/assets/img/messages-2.jpg') }}" alt=""
                                 class="rounded-circle">
                             <div>
                                 <h4>Anna Nelson</h4>
@@ -148,7 +148,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="{{ asset('Admin/assets/img/messages-3.jpg') }}" alt=""
+                            <img src="{{ asset('theme/Admin/assets/img/messages-3.jpg') }}" alt=""
                                 class="rounded-circle">
                             <div>
                                 <h4>David Muldon</h4>

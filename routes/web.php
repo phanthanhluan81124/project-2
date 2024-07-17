@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', [ClientController::class, 'index'])->name('home');
 Route::get('/detail-post-{slug}', [ClientController::class, 'detailPost'])->name('detailPost');
 Route::post('/detail-post-{slug}', [ClientController::class, 'comment']);
@@ -62,3 +63,6 @@ Route::prefix('ZenBlog-admin')->middleware('admin')->group(function () {
 
 });
 
+Route::fallback(function(){
+    return redirect()->route('home');
+});
