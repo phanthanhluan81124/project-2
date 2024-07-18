@@ -12,7 +12,7 @@
                 </div>
             </div>
             @if (session('success'))
-                <div class="alert alert-success">{{ session('status') }}</div>
+                <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
             <div class="row gy-4">

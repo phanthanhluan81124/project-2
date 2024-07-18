@@ -103,6 +103,17 @@ class AdminController extends Controller
     }
     public function Post(Request $request)
     {
+        $request->validate(
+            [
+                'title' => 'required|max:255|string',
+                'avatar' => 'required|image|mimes:jpeg,png,gif|max:2048|dimensions:min_width:100,min_height:100',
+                'image' => 'image|mimes:jpeg,png,gif|max:2048|dimensions:min_width:100,min_height:100',
+                'short_description' => 'required|max:255|string',
+                'content' => 'string',
+                'cate_parent_id' =>'required|integer',
+                'cate_son_id' =>'required|integer',
+            ]
+        );
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
             $extension = $file->getClientOriginalName();
@@ -151,7 +162,7 @@ class AdminController extends Controller
             } else {
                 $count = PostModel::all();
             }
-           
+
         }
         $limit = 10;
         $start = 0;
@@ -160,7 +171,7 @@ class AdminController extends Controller
             if (isset($_GET['category']) && !empty($_GET['category'])) {
                 if (isset($_GET['page']) && !empty($_GET['page'])) {
                     $start = ($_GET['page'] - 1) * $limit;
-                    $cate =  PostModel::where('title', 'LIKE', "%" . $_GET['search'] . "%")->get();
+                    $cate = PostModel::where('title', 'LIKE', "%" . $_GET['search'] . "%")->get();
                     $posts = PostModel::where('title', 'LIKE', "%" . $_GET['search'] . "%")->where('cate_parent_id', '=', $_GET['category'])->where('cate_son_id', '=', $_GET['category'])->skip($start)->take($limit)->get();
                 } else {
                     $posts = PostModel::where('title', 'LIKE', "%" . $_GET['search'] . "%")->where('cate_parent_id', '=', $_GET['category'])->where('cate_son_id', '=', $_GET['category'])->skip($start)->take($limit)->get();
@@ -200,6 +211,17 @@ class AdminController extends Controller
         $post = PostModel::findOrFail($id);
         $image_post = ImagePostModel::where('post_id', '=', $id)->get();
         $filename = $post->image;
+        $request->validate(
+            [
+                'title' => 'required|max:255|string',
+                'avatar' => 'required|image|mimes:jpeg,png,gif|max:2048|dimensions:min_width:100,min_height:100',
+                'image' => 'image|mimes:jpeg,png,gif|max:2048|dimensions:min_width:100,min_height:100',
+                'short_description' => 'required|max:255|string',
+                'content' => 'string',
+                'cate_parent_id' =>'required|integer',
+                'cate_son_id' =>'required|integer',
+            ]
+        );
         if ($request->has('avatar')) {
             $file = $request->file('avatar');
             $extension = $file->getClientOriginalName();
@@ -311,7 +333,8 @@ class AdminController extends Controller
         return redirect()->back()->with('status', 'Update User Successfully');
 
     }
-    public function deleteUser($id){
+    public function deleteUser($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->back();
